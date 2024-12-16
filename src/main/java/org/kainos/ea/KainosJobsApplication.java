@@ -1,6 +1,5 @@
 package org.kainos.ea;
 
-
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
@@ -19,8 +18,6 @@ public class KainosJobsApplication
     public String getName() {
         return "KainosJobs";
     }
-
-
 
     @Override
     public void initialize(final Bootstrap<KainosJobsConfiguration> bootstrap) {
