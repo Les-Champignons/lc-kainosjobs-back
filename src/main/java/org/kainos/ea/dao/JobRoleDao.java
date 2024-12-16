@@ -1,18 +1,15 @@
 package org.kainos.ea.dao;
-
-import org.kainos.ea.models.JobRole;
 import org.kainos.ea.models.JobRoleRequest;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoleDao {
-    public List<JobRoleRequest> getJobRoles() throws SQLException {
+public class JobRoleDao {
+    public List<JobRoleRequest> getAllJobRoles() throws SQLException {
         List<JobRoleRequest> jobRoles = new ArrayList<>();
         try (Connection connection = DatabaseConnector.getConnection()) {
             Statement statement = connection.createStatement();
@@ -20,6 +17,7 @@ public class RoleDao {
             ResultSet resultSet =
                     statement.executeQuery
                             ("SELECT jobRoleId, roleName, location, closingDate, capabilityName, bandName FROM JobRoles JOIN Capability ON JobRoles.capabilityId JOIN Band ON JobRoles.bandId;");
+
 
             while (resultSet.next()) {
                 JobRoleRequest jobRoleRequest = new JobRoleRequest(
@@ -30,9 +28,9 @@ public class RoleDao {
                         resultSet.getString("capabilityName"),
                         resultSet.getString("bandName")
                 );
+                jobRoles.add(jobRoleRequest);
             }
+            return jobRoles;
         }
-        return null;
-
     }
 }
