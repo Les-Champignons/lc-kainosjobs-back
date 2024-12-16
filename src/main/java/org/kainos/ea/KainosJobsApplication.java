@@ -1,8 +1,12 @@
 package org.kainos.ea;
 
-import io.dropwizard.core.Application;
-import io.dropwizard.core.setup.Bootstrap;
-import io.dropwizard.core.setup.Environment;
+
+import io.dropwizard.setup.Bootstrap;
+import io.dropwizard.setup.Environment;
+import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
+import io.dropwizard.Application;
+import io.federecio.dropwizard.swagger.SwaggerBundle;
+
 
 public class KainosJobsApplication extends Application<KainosJobsConfiguration> {
 
@@ -15,9 +19,18 @@ public class KainosJobsApplication extends Application<KainosJobsConfiguration> 
         return "KainosJobs";
     }
 
+
+
     @Override
     public void initialize(final Bootstrap<KainosJobsConfiguration> bootstrap) {
         // TODO: application initialization
+
+        bootstrap.addBundle(new SwaggerBundle<KainosJobsConfiguration>() {
+            @Override
+            protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(KainosJobsConfiguration configuration) {
+                return configuration.getSwagger();
+            }
+        });
     }
 
     @Override
