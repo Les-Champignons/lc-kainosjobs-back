@@ -5,6 +5,4 @@ CREATE TABLE JobRoles (
     capabilityId INT,
     bandId INT,
     closingDate DATE
-    FOREIGN KEY (capabilityId) REFERENCES Capability(capabilityId),
-    FOREIGN KEY (bandId) REFERENCES Band(bandId),
  )

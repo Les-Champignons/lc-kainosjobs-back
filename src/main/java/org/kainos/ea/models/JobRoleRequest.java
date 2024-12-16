@@ -2,6 +2,7 @@ package org.kainos.ea.models;
 import java.sql.Date;
 
 public class JobRoleRequest {
+    private int jobRoleId;
     private String roleName;
     private String location;
     private Date closingDate;
@@ -9,13 +10,23 @@ public class JobRoleRequest {
     private String bandName;
 
 
-    public JobRoleRequest(String roleName, String location, Date closingDate,
-                          String capabilityName, String bandName) {
+    public JobRoleRequest(int jobRoleId, String roleName, String location,
+                          Date closingDate, String capabilityName,
+                          String bandName) {
+        this.jobRoleId = jobRoleId;
         this.roleName = roleName;
         this.location = location;
         this.closingDate = closingDate;
         this.capabilityName = capabilityName;
         this.bandName = bandName;
+    }
+
+    public int getJobRoleId() {
+        return jobRoleId;
+    }
+
+    public void setJobRoleId(int jobRoleId) {
+        this.jobRoleId = jobRoleId;
     }
 
     public String getRoleName() {
