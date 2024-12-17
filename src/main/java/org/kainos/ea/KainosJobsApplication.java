@@ -1,6 +1,5 @@
 package org.kainos.ea;
 
-
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
@@ -8,7 +7,8 @@ import io.dropwizard.Application;
 import io.federecio.dropwizard.swagger.SwaggerBundle;
 
 
-public class KainosJobsApplication extends Application<KainosJobsConfiguration> {
+public class KainosJobsApplication
+        extends Application<KainosJobsConfiguration> {
 
     public static void main(final String[] args) throws Exception {
         new KainosJobsApplication().run(args);
@@ -19,15 +19,13 @@ public class KainosJobsApplication extends Application<KainosJobsConfiguration> 
         return "KainosJobs";
     }
 
-
-
     @Override
     public void initialize(final Bootstrap<KainosJobsConfiguration> bootstrap) {
-        // TODO: application initialization
 
         bootstrap.addBundle(new SwaggerBundle<KainosJobsConfiguration>() {
             @Override
-            protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(KainosJobsConfiguration configuration) {
+            protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(
+                    final KainosJobsConfiguration configuration) {
                 return configuration.getSwagger();
             }
         });
@@ -36,7 +34,6 @@ public class KainosJobsApplication extends Application<KainosJobsConfiguration> 
     @Override
     public void run(final KainosJobsConfiguration configuration,
                     final Environment environment) {
-        // TODO: implement application
     }
 
 }
