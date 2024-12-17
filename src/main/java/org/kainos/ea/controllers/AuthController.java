@@ -4,7 +4,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiKeyAuthDefinition;
 import io.swagger.annotations.SecurityDefinition;
 import io.swagger.annotations.SwaggerDefinition;
-import org.flywaydb.core.api.logging.Log;
 import org.kainos.ea.requests.LoginRequest;
 import org.kainos.ea.services.AuthService;
 
