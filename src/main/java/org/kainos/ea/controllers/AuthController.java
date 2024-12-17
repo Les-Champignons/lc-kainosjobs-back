@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiKeyAuthDefinition;
 import io.swagger.annotations.SecurityDefinition;
 import io.swagger.annotations.SwaggerDefinition;
+import org.kainos.ea.exceptions.InvalidException;
 import org.kainos.ea.requests.LoginRequest;
 import org.kainos.ea.services.AuthService;
 
@@ -47,7 +48,7 @@ public class AuthController {
         } catch (SQLException e) {
             Logger.getLogger("default").severe(e.getMessage());
             return Response.serverError().build();
-        } catch (org.kainos.ea.exceptions.InvalidException e) {
+        } catch (InvalidException e) {
             Logger.getLogger("default").warning(e.getMessage());
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity(e.getMessage()).build();
