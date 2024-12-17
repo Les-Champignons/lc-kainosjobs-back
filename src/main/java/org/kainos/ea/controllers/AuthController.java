@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiKeyAuthDefinition;
 import io.swagger.annotations.SecurityDefinition;
 import io.swagger.annotations.SwaggerDefinition;
+import org.flywaydb.core.api.logging.Log;
 import org.kainos.ea.requests.LoginRequest;
 import org.kainos.ea.services.AuthService;
 
@@ -14,6 +15,7 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 @Api("Auth API")
 @Path("/api/auth")
@@ -44,9 +46,10 @@ public class AuthController {
                     authService.login(loginRequest)
             ).build();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            Logger.getLogger("default").severe(e.getMessage());
             return Response.serverError().build();
         } catch (org.kainos.ea.exceptions.InvalidException e) {
+            Logger.getLogger("default").warning(e.getMessage());
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity(e.getMessage()).build();
         }
