@@ -1,5 +1,5 @@
 package org.kainos.ea.models;
-import java.sql.Date;
+import java.util.Date;
 
 public class JobRoleRequest {
     private int jobRoleId;

@@ -1,6 +1,6 @@
 package org.kainos.ea.responses;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class JobRoleResponse {
     private int jobRoleId;

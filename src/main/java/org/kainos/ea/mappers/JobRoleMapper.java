@@ -15,3 +15,4 @@ public class JobRoleMapper {
                         jobRole.getBandName())).collect(Collectors.toList());
     }
 }
+
