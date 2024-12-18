@@ -2,6 +2,7 @@ package org.kainos.ea.dao;
 import org.kainos.ea.models.JobRoleRequest;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,22 +19,21 @@ public class JobRoleDao {
         try (Connection connection = DatabaseConnector.getConnection()) {
             Statement statement = connection.createStatement();
 
-            ResultSet resultSet =
-                    statement.executeQuery(
-                                    "SELECT jobRoleId, roleName, location, "
-                                            +
-                                            "closingDate, "
-                                            +
-                                            "capabilityName, bandName "
-                                            +
-                                            "FROM JobRoles JOIN Capability"
-                                            +
-                                            " ON JobRoles.capabilityId JOIN "
-                                            +
-                                            "Band ON JobRoles.bandId;"
-                            );
-
-
+            String query = "SELECT jobRoleId, roleName, location, "
+                    +
+                    "closingDate, "
+                    +
+                    "capabilityName, bandName "
+                    +
+                    "FROM JobRoles JOIN Capability"
+                    +
+                    " ON JobRoles.capabilityId JOIN "
+                    +
+                    "Band ON JobRoles.bandId;";
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    query
+            );
+            ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 JobRoleRequest jobRoleRequest = new JobRoleRequest(
                         resultSet.getInt("jobRoleId"),
