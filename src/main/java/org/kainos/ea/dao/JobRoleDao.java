@@ -7,9 +7,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class JobRoleDao {
-    public List<JobRoleRequest> getAllJobRoles() throws SQLException {
+    private static final Logger LOGGER = Logger.getLogger(
+            JobRoleDao.class.getName());
+
+    public List<JobRoleRequest> getAllJobRoles() {
         List<JobRoleRequest> jobRoles = new ArrayList<>();
         try (Connection connection = DatabaseConnector.getConnection()) {
             Statement statement = connection.createStatement();
@@ -30,7 +34,11 @@ public class JobRoleDao {
                 );
                 jobRoles.add(jobRoleRequest);
             }
+            LOGGER.info("Successfully returned job roles");
             return jobRoles;
+        } catch (SQLException e) {
+            LOGGER.severe("SEVERE: SQL Exception: " + e.getMessage());
+            return null;
         }
     }
 }

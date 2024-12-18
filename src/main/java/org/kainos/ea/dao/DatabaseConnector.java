@@ -1,11 +1,18 @@
 package org.kainos.ea.dao;
 
+import org.kainos.ea.controllers.JobRoleController;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 public final class DatabaseConnector {
+
     private static Connection conn;
+    private static final Logger LOGGER = Logger.getLogger(
+            DatabaseConnector.class.getName());
+
     private DatabaseConnector() { }
     public static Connection getConnection() throws SQLException {
 
@@ -27,9 +34,11 @@ public final class DatabaseConnector {
             }
             conn = DriverManager.getConnection(
                     "jdbc:mysql://" + host + "/" + name, username, password);
+            LOGGER.info("Database successfully connected");
             return conn;
 
         } catch (Exception e) {
+            LOGGER.severe("SEVERE: Database connection error: " + e.getMessage());
             System.err.println(e.getMessage());
         }
 
