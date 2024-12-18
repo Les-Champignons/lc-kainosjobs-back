@@ -10,11 +10,11 @@ import io.dropwizard.Configuration;
 
 
 public class KainosJobsConfiguration extends Configuration {
-    // TODO: implement service configuration
 
     @Valid
     @NotNull
-    private final SwaggerBundleConfiguration swagger = new SwaggerBundleConfiguration();
+    private final SwaggerBundleConfiguration swagger =
+            new SwaggerBundleConfiguration();
 
     @JsonProperty("swagger")
     public SwaggerBundleConfiguration getSwagger() {
