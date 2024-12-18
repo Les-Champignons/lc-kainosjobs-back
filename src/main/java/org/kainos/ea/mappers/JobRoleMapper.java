@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 public final class JobRoleMapper {
     private JobRoleMapper() {
+
     }
 
     public static List<JobRoleResponse> mapJobRoleRequestToJobRoleResponse(

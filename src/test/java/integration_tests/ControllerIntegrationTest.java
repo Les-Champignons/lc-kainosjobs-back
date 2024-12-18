@@ -19,7 +19,7 @@ public class ControllerIntegrationTest {
             new DropwizardAppExtension<>(KainosJobsApplication.class);
 
     @Test
-    void getEmployees_shouldReturnListOfEmployees() {
+    void getJobRoles_shouldReturnListOfJobRoles() {
         Client client = APP.client();
 
         List<JobRoleResponse> response = client
@@ -27,6 +27,9 @@ public class ControllerIntegrationTest {
                 .request()
                 .get(List.class);
 
+        Assertions.assertTrue(response instanceof List);
         Assertions.assertFalse(response.isEmpty());
     }
+
+
 }
