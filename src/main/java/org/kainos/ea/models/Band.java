@@ -4,7 +4,7 @@ public class Band {
     private int bandId;
     private String bandName;
 
-    public Band(int bandId, String bandName) {
+    public Band(final int bandId, final String bandName) {
         this.bandId = bandId;
         this.bandName = bandName;
     }
@@ -13,7 +13,7 @@ public class Band {
         return bandId;
     }
 
-    public void setBandId(int bandId) {
+    public void setBandId(final int bandId) {
         this.bandId = bandId;
     }
 
@@ -21,7 +21,7 @@ public class Band {
         return bandName;
     }
 
-    public void setBandName(String bandName) {
+    public void setBandName(final String bandName) {
         this.bandName = bandName;
     }
 }

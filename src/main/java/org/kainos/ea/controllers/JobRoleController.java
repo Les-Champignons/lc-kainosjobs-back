@@ -1,6 +1,5 @@
 package org.kainos.ea.controllers;
 import io.swagger.annotations.Api;
-import org.kainos.ea.exceptions.DoesNotExistException;
 import org.kainos.ea.services.JobRoleService;
 
 import javax.ws.rs.GET;
@@ -20,7 +19,7 @@ public class JobRoleController {
 
 
     public JobRoleController(
-            JobRoleService jobRoleService
+            final JobRoleService jobRoleService
     ) {
         this.jobRoleService = jobRoleService;
     }
@@ -30,7 +29,8 @@ public class JobRoleController {
     public Response getAllJobRoles() {
         try {
             LOGGER.info("All job roles have been successfully returned");
-            return Response.ok().entity(jobRoleService.getAllJobRoles()).build();
+            return Response.ok().
+                    entity(jobRoleService.getAllJobRoles()).build();
         } catch (SQLException e) {
             LOGGER.severe("SEVERE: Internal Server Error: " + e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)

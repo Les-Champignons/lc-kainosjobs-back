@@ -1,7 +1,5 @@
 package org.kainos.ea.dao;
 
-import org.kainos.ea.controllers.JobRoleController;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -38,7 +36,8 @@ public final class DatabaseConnector {
             return conn;
 
         } catch (Exception e) {
-            LOGGER.severe("SEVERE: Database connection error: " + e.getMessage());
+            LOGGER.severe("SEVERE: Database connection error: "
+                    + e.getMessage());
             System.err.println(e.getMessage());
         }
 

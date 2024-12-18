@@ -4,7 +4,7 @@ public class Capability {
     private int capabilityId;
     private String capabilityName;
 
-    public Capability(int capabilityId, String capabilityName) {
+    public Capability(final int capabilityId, final String capabilityName) {
         this.capabilityId = capabilityId;
         this.capabilityName = capabilityName;
     }
@@ -13,7 +13,7 @@ public class Capability {
         return capabilityId;
     }
 
-    public void setCapabilityId(int capabilityId) {
+    public void setCapabilityId(final int capabilityId) {
         this.capabilityId = capabilityId;
     }
 
@@ -21,7 +21,7 @@ public class Capability {
         return capabilityName;
     }
 
-    public void setCapabilityName(String capabilityName) {
+    public void setCapabilityName(final String capabilityName) {
         this.capabilityName = capabilityName;
     }
 }

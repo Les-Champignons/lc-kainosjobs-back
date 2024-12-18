@@ -10,9 +10,10 @@ public class JobRoleResponse {
     private String capabilityName;
     private String bandName;
 
-    public JobRoleResponse(int jobRoleId, String roleName, String location,
-                           Date closingDate, String capabilityName,
-                           String bandName) {
+    public JobRoleResponse(final int jobRoleId, final String roleName,
+                           final String location,
+                           final Date closingDate, final String capabilityName,
+                           final String bandName) {
         this.jobRoleId = jobRoleId;
         this.roleName = roleName;
         this.location = location;

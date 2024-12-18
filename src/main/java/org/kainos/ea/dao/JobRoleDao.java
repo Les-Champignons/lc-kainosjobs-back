@@ -19,8 +19,19 @@ public class JobRoleDao {
             Statement statement = connection.createStatement();
 
             ResultSet resultSet =
-                    statement.executeQuery
-                            ("SELECT jobRoleId, roleName, location, closingDate, capabilityName, bandName FROM JobRoles JOIN Capability ON JobRoles.capabilityId JOIN Band ON JobRoles.bandId;");
+                    statement.executeQuery(
+                                    "SELECT jobRoleId, roleName, location, "
+                                            +
+                                            "closingDate, "
+                                            +
+                                            "capabilityName, bandName "
+                                            +
+                                            "FROM JobRoles JOIN Capability"
+                                            +
+                                            " ON JobRoles.capabilityId JOIN "
+                                            +
+                                            "Band ON JobRoles.bandId;"
+                            );
 
 
             while (resultSet.next()) {

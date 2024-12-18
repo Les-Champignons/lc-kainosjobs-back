@@ -10,8 +10,10 @@ public class JobRole {
     private int bandId;
     private Date closingDate;
 
-    public JobRole(int jobRoleId, String roleName, String location,
-                   int capabilityId, int bandId, Date closingDate) {
+    public JobRole(
+            final int jobRoleId, final String roleName, final String location,
+            final int capabilityId, final int bandId, final Date closingDate
+    ) {
         this.jobRoleId = jobRoleId;
         this.roleName = roleName;
         this.location = location;
@@ -24,7 +26,7 @@ public class JobRole {
         return jobRoleId;
     }
 
-    public void setJobRoleId(int jobRoleId) {
+    public void setJobRoleId(final int jobRoleId) {
         this.jobRoleId = jobRoleId;
     }
 
@@ -32,7 +34,7 @@ public class JobRole {
         return roleName;
     }
 
-    public void setRoleName(String roleName) {
+    public void setRoleName(final String roleName) {
         this.roleName = roleName;
     }
 
@@ -40,7 +42,7 @@ public class JobRole {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(final String location) {
         this.location = location;
     }
 
@@ -48,7 +50,7 @@ public class JobRole {
         return capabilityId;
     }
 
-    public void setCapabilityId(int capabilityId) {
+    public void setCapabilityId(final int capabilityId) {
         this.capabilityId = capabilityId;
     }
 
@@ -56,7 +58,7 @@ public class JobRole {
         return bandId;
     }
 
-    public void setBandId(int bandId) {
+    public void setBandId(final int bandId) {
         this.bandId = bandId;
     }
 
@@ -64,7 +66,7 @@ public class JobRole {
         return closingDate;
     }
 
-    public void setClosingDate(Date closingDate) {
+    public void setClosingDate(final Date closingDate) {
         this.closingDate = closingDate;
     }
 }
