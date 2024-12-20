@@ -5,6 +5,9 @@ import io.dropwizard.setup.Environment;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import io.dropwizard.Application;
 import io.federecio.dropwizard.swagger.SwaggerBundle;
+import org.kainos.ea.controllers.JobRoleController;
+import org.kainos.ea.dao.JobRoleDao;
+import org.kainos.ea.services.JobRoleService;
 
 
 public class KainosJobsApplication
@@ -34,6 +37,13 @@ public class KainosJobsApplication
     @Override
     public void run(final KainosJobsConfiguration configuration,
                     final Environment environment) {
+        environment.jersey()
+                .register(
+                        new JobRoleController(
+                                new JobRoleService(
+                                        new JobRoleDao()
+                                )
+                        )
+                );
     }
-
 }
