@@ -4,17 +4,20 @@ public class JobRoleDetailedRequest {
     private int jobRoleId;
     private String statusName;
     private String bandName;
+    private String capabilityName;
     private JobRoleDetailedParameters jobRoleDetailedParameters;
 
     public JobRoleDetailedRequest(
             final int jobRoleId,
             final String statusName,
             final String bandName,
+            final String capabilityName,
             final JobRoleDetailedParameters jobRoleDetailedParameters
     ) {
         this.jobRoleId = jobRoleId;
         this.statusName = statusName;
         this.bandName = bandName;
+        this.capabilityName = capabilityName;
         this.jobRoleDetailedParameters = jobRoleDetailedParameters;
     }
 
@@ -49,6 +52,23 @@ public class JobRoleDetailedRequest {
     public void setJobRoleInformationParameters(
             final JobRoleDetailedParameters jobRoleDetailedParameters
     ) {
+        this.jobRoleDetailedParameters = jobRoleDetailedParameters;
+    }
+
+    public String getCapabilityName() {
+        return capabilityName;
+    }
+
+    public void setCapabilityName(final String capabilityName) {
+        this.capabilityName = capabilityName;
+    }
+
+    public JobRoleDetailedParameters getJobRoleDetailedParameters() {
+        return jobRoleDetailedParameters;
+    }
+
+    public void setJobRoleDetailedParameters(
+            final JobRoleDetailedParameters jobRoleDetailedParameters) {
         this.jobRoleDetailedParameters = jobRoleDetailedParameters;
     }
 }
