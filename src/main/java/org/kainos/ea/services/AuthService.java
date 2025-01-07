@@ -15,7 +15,9 @@ public class AuthService {
     private final AuthDao authDao;
     private final Key key;
 
-    static final int EXPIRATION_TIME = 8 * 60 * 60 * 1000;
+    static final int EXPIRATION_TIME = Integer.parseInt(
+            System.getenv("EXPIRATION_TIME")
+    );
 
     public AuthService(final AuthDao authDao, final Key key) {
         this.authDao = authDao;
