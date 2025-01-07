@@ -1,4 +1,6 @@
 package org.kainos.ea.dao;
+import org.kainos.ea.models.JobRoleDetailedParameters;
+import org.kainos.ea.models.JobRoleDetailedRequest;
 import org.kainos.ea.models.JobRoleRequest;
 
 import java.sql.Connection;
@@ -51,5 +53,62 @@ public class JobRoleDao {
             LOGGER.severe("SEVERE: SQL Exception: " + e.getMessage());
             return null;
         }
+    }
+
+    public JobRoleDetailedRequest getJobRoleInformationById(final int id) {
+        try (Connection connection = DatabaseConnector.getConnection()) {
+            Statement statement = connection.createStatement();
+
+            String query = "SELECT roleName, location, closingDate, "
+                    +
+                    "`description`, responsibilities, sharepointUrl, "
+                    +
+                    "numberOfOpenPositions, statusName, "
+                    +
+                    "bandName, capabilityName"
+                    +
+                    " FROM JobRoles JOIN Capability ON "
+                    +
+                    "JobRoles.capabilityId = Capability.capabilityId "
+                    +
+                    "JOIN `Status` ON JobRoles.statusId = `Status`.statusId "
+                    +
+                    "JOIN Band ON JobRoles.bandId = Band.bandId "
+                    +
+                    "WHERE jobRoleId = (?);";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    query
+            );
+
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                JobRoleDetailedRequest jobRoleDetailedRequest =
+                        new JobRoleDetailedRequest(
+                            id,
+                            resultSet.getString("statusName"),
+                            resultSet.getString("bandName"),
+                            resultSet.getString("capabilityName"),
+                            new JobRoleDetailedParameters(
+                                    resultSet.getString("description"),
+                                    resultSet.getString("responsibilities"),
+                                    resultSet.getString("sharepointUrl"),
+                                    resultSet.getString("roleName"),
+                                    resultSet.getString("location"),
+                                    resultSet.getDate("closingDate"),
+                                    resultSet.getInt("numberOfOpenPositions")
+                            )
+                );
+                LOGGER.info("Successfully returned job roles");
+                return jobRoleDetailedRequest;
+            }
+        }   catch (SQLException e) {
+            LOGGER.severe("SEVERE: SQL Exception: " + e.getMessage());
+            return null;
+        }
+        return null;
     }
 }
