@@ -5,6 +5,11 @@ import io.dropwizard.setup.Environment;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import io.dropwizard.Application;
 import io.federecio.dropwizard.swagger.SwaggerBundle;
+import io.jsonwebtoken.Jwts;
+import org.kainos.ea.controllers.AuthController;
+import org.kainos.ea.daos.AuthDao;
+import org.kainos.ea.services.AuthService;
+import javax.crypto.SecretKey;
 import org.kainos.ea.controllers.JobRoleController;
 import org.kainos.ea.dao.JobRoleDao;
 import org.kainos.ea.services.JobRoleService;
@@ -37,6 +42,14 @@ public class KainosJobsApplication
     @Override
     public void run(final KainosJobsConfiguration configuration,
                     final Environment environment) {
+        SecretKey jwtKey = Jwts.SIG.HS256.key().build();
+
+        environment.jersey().register(new AuthController(
+                new AuthService(
+                        new AuthDao(), jwtKey
+                )
+        ));
+
         environment.jersey()
                 .register(
                         new JobRoleController(
