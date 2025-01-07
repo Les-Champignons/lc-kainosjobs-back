@@ -9,8 +9,10 @@ import io.jsonwebtoken.Jwts;
 import org.kainos.ea.controllers.AuthController;
 import org.kainos.ea.daos.AuthDao;
 import org.kainos.ea.services.AuthService;
-
 import javax.crypto.SecretKey;
+import org.kainos.ea.controllers.JobRoleController;
+import org.kainos.ea.dao.JobRoleDao;
+import org.kainos.ea.services.JobRoleService;
 
 
 public class KainosJobsApplication
@@ -48,6 +50,13 @@ public class KainosJobsApplication
                 )
         ));
 
+        environment.jersey()
+                .register(
+                        new JobRoleController(
+                                new JobRoleService(
+                                        new JobRoleDao()
+                                )
+                        )
+                );
     }
-
 }
