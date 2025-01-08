@@ -16,7 +16,8 @@ public class JobRoleDetailedRequest {
             @JsonProperty("statusName") final String statusName,
             @JsonProperty("bandName") final String bandName,
             @JsonProperty("capabilityName") final String capabilityName,
-            @JsonProperty("jobRoleDetailedParameters") final JobRoleDetailedParameters jobRoleDetailedParameters
+            @JsonProperty("jobRoleDetailedParameters")
+            final JobRoleDetailedParameters jobRoleDetailedParameters
     ) {
         this.jobRoleId = jobRoleId;
         this.statusName = statusName;
@@ -54,9 +55,9 @@ public class JobRoleDetailedRequest {
     }
 
     public void setJobRoleInformationParameters(
-            final JobRoleDetailedParameters jobRoleDetailedParameters
+            final JobRoleDetailedParameters jobRoleDetailParameters
     ) {
-        this.jobRoleDetailedParameters = jobRoleDetailedParameters;
+        this.jobRoleDetailedParameters = jobRoleDetailParameters;
     }
 
     public String getCapabilityName() {

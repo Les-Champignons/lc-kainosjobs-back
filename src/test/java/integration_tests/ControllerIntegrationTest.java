@@ -7,10 +7,18 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.kainos.ea.KainosJobsApplication;
 import org.kainos.ea.KainosJobsConfiguration;
+import org.kainos.ea.models.JobRoleDetailedRequest;
+import org.kainos.ea.responses.JobRoleDetailedResponse;
 import org.kainos.ea.responses.JobRoleResponse;
 
 import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.Response;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(DropwizardExtensionsSupport.class)
 public class ControllerIntegrationTest {
@@ -31,5 +39,15 @@ public class ControllerIntegrationTest {
         Assertions.assertFalse(response.isEmpty());
     }
 
+    @Test
+    void getDetailedJobRole_shouldReturnOKResponseCodeWhenGivenValidId() {
+        Client client = ClientBuilder.newClient();
+        int id = 1;
+        Response response = client
+                .target("http://localhost:8080/api/job-roles/" + id)
+                .request()
+                .get();
 
+        assertEquals(200, response.getStatus());
+    }
 }

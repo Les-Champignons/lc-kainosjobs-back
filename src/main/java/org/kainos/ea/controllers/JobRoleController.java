@@ -45,7 +45,9 @@ public class JobRoleController {
     public Response getDetailedJobRole(@PathParam("id") final int id) {
         try {
             LOGGER.info("Detailed job role has been successfully returned");
-            return Response.ok().entity(jobRoleService.getDetailedJobRole(id)).build();
+            return Response.ok()
+                        .entity(jobRoleService.getDetailedJobRole(id))
+                        .build();
         } catch (SQLException e) {
             LOGGER.severe("SEVERE: Internal Server Error: " + e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)

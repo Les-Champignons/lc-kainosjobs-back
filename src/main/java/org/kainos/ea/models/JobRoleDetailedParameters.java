@@ -33,7 +33,7 @@ public class JobRoleDetailedParameters {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
@@ -41,7 +41,7 @@ public class JobRoleDetailedParameters {
         return responsibilities;
     }
 
-    public void setResponsibilities(String responsibilities) {
+    public void setResponsibilities(final String responsibilities) {
         this.responsibilities = responsibilities;
     }
 
@@ -49,7 +49,7 @@ public class JobRoleDetailedParameters {
         return sharepointUrl;
     }
 
-    public void setSharepointUrl(String sharepointUrl) {
+    public void setSharepointUrl(final String sharepointUrl) {
         this.sharepointUrl = sharepointUrl;
     }
 
@@ -57,7 +57,7 @@ public class JobRoleDetailedParameters {
         return roleName;
     }
 
-    public void setRoleName(String roleName) {
+    public void setRoleName(final String roleName) {
         this.roleName = roleName;
     }
 
@@ -65,7 +65,7 @@ public class JobRoleDetailedParameters {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(final String location) {
         this.location = location;
     }
 
@@ -73,7 +73,7 @@ public class JobRoleDetailedParameters {
         return closingDate;
     }
 
-    public void setClosingDate(Date closingDate) {
+    public void setClosingDate(final Date closingDate) {
         this.closingDate = closingDate;
     }
 
@@ -81,7 +81,7 @@ public class JobRoleDetailedParameters {
         return numberOfOpenPositions;
     }
 
-    public void setNumberOfOpenPositions(int numberOfOpenPositions) {
+    public void setNumberOfOpenPositions(final int numberOfOpenPositions) {
         this.numberOfOpenPositions = numberOfOpenPositions;
     }
 }

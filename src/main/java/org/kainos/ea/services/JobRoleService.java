@@ -25,8 +25,12 @@ public class JobRoleService {
                 jobRoleDao.getAllJobRoles());
     }
 
-    public JobRoleDetailedResponse getDetailedJobRole(final int id) throws SQLException {
-        JobRoleDetailedRequest jobRoleDetailedRequest = jobRoleDao.getJobRoleInformationById(id);
+    public JobRoleDetailedResponse getDetailedJobRole(
+            final int id
+    ) throws SQLException {
+        LOGGER.info("Successfully returned detailed job role");
+        JobRoleDetailedRequest jobRoleDetailedRequest = jobRoleDao
+                .getJobRoleInformationById(id);
         return new JobRoleDetailedResponse(
                     jobRoleDetailedRequest.getJobRoleId(),
                     jobRoleDetailedRequest.getStatusName(),

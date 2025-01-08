@@ -6,8 +6,7 @@ import org.kainos.ea.responses.JobRoleResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@SuppressWarnings("checkstyle:FinalClass")
-public class JobRoleMapper {
+public final class JobRoleMapper {
     private JobRoleMapper() {
 
     }
