@@ -1,5 +1,6 @@
 package org.kainos.ea.controllers;
 import io.swagger.annotations.Api;
+import org.kainos.ea.exceptions.DoesNotExistException;
 import org.kainos.ea.services.JobRoleService;
 
 import javax.ws.rs.GET;
@@ -51,6 +52,10 @@ public class JobRoleController {
         } catch (SQLException e) {
             LOGGER.severe("SEVERE: Internal Server Error: " + e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity(e.getMessage()).build();
+        } catch (DoesNotExistException e) {
+            LOGGER.severe("SEVERE: Job Role Not Found");
+            return Response.status(Response.Status.BAD_REQUEST)
                     .entity(e.getMessage()).build();
         }
     }

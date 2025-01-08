@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -19,8 +18,6 @@ public class JobRoleDao {
     public List<JobRoleRequest> getAllJobRoles() {
         List<JobRoleRequest> jobRoles = new ArrayList<>();
         try (Connection connection = DatabaseConnector.getConnection()) {
-            Statement statement = connection.createStatement();
-
             String query = "SELECT jobRoleId, roleName, location, "
                     +
                     "closingDate, "
@@ -57,8 +54,6 @@ public class JobRoleDao {
 
     public JobRoleDetailedRequest getJobRoleInformationById(final int id) {
         try (Connection connection = DatabaseConnector.getConnection()) {
-            Statement statement = connection.createStatement();
-
             String query = "SELECT roleName, location, closingDate, "
                     +
                     "`description`, responsibilities, sharepointUrl, "
@@ -71,7 +66,7 @@ public class JobRoleDao {
                     +
                     "JobRoles.capabilityId = Capability.capabilityId "
                     +
-                    "JOIN `Status` ON JobRoles.statusId = `Status`.statusId "
+                    "JOIN Status ON JobRoles.statusId = Status.statusId "
                     +
                     "JOIN Band ON JobRoles.bandId = Band.bandId "
                     +
@@ -83,33 +78,36 @@ public class JobRoleDao {
 
             preparedStatement.setInt(1, id);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
-            while (resultSet.next()) {
-                JobRoleDetailedRequest jobRoleDetailedRequest =
-                        new JobRoleDetailedRequest(
-                            id,
-                            resultSet.getString("statusName"),
-                            resultSet.getString("bandName"),
-                            resultSet.getString("capabilityName"),
-                            new JobRoleDetailedParameters(
-                                    resultSet.getString("description"),
-                                    resultSet.getString("responsibilities"),
-                                    resultSet.getString("sharepointUrl"),
-                                    resultSet.getString("roleName"),
-                                    resultSet.getString("location"),
-                                    resultSet.getDate("closingDate"),
-                                    resultSet.getInt("numberOfOpenPositions")
-                            )
-                );
-                LOGGER.info("Successfully returned job roles");
-                System.out.println(jobRoleDetailedRequest);
-                return jobRoleDetailedRequest;
+                while (resultSet.next()) {
+                    JobRoleDetailedRequest jobRoleDetailedRequest =
+                            new JobRoleDetailedRequest(
+                                    id,
+                                    resultSet.getString("statusName"),
+                                    resultSet.getString("bandName"),
+                                    resultSet.getString("capabilityName"),
+                                    new JobRoleDetailedParameters(
+                                            resultSet.getString("description"),
+                                            resultSet.getString(
+                                                    "responsibilities"),
+                                            resultSet.getString(
+                                                    "sharepointUrl"),
+                                            resultSet.getString("roleName"),
+                                            resultSet.getString("location"),
+                                            resultSet.getDate("closingDate"),
+                                            resultSet.getInt(
+                                                    "numberOfOpenPositions")
+                                    )
+                            );
+                    LOGGER.info("Successfully returned job roles");
+                    return jobRoleDetailedRequest;
+                }
             }
-        }   catch (SQLException e) {
+            return null;
+        } catch (SQLException e) {
             LOGGER.severe("SEVERE: SQL Exception: " + e.getMessage());
             return null;
         }
-        return null;
     }
 }

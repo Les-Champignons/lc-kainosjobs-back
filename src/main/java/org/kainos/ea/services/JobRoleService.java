@@ -1,6 +1,7 @@
 package org.kainos.ea.services;
 
 import org.kainos.ea.dao.JobRoleDao;
+import org.kainos.ea.exceptions.DoesNotExistException;
 import org.kainos.ea.mappers.JobRoleMapper;
 import org.kainos.ea.models.JobRoleDetailedRequest;
 import org.kainos.ea.responses.JobRoleDetailedResponse;
@@ -27,7 +28,10 @@ public class JobRoleService {
 
     public JobRoleDetailedResponse getDetailedJobRole(
             final int id
-    ) throws SQLException {
+    ) throws SQLException, DoesNotExistException {
+        if (jobRoleDao.getJobRoleInformationById(id) == null) {
+            throw new DoesNotExistException();
+        }
         LOGGER.info("Successfully returned detailed job role");
         JobRoleDetailedRequest jobRoleDetailedRequest = jobRoleDao
                 .getJobRoleInformationById(id);
