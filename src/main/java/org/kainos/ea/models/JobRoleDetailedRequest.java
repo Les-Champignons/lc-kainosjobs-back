@@ -1,5 +1,8 @@
 package org.kainos.ea.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class JobRoleDetailedRequest {
     private int jobRoleId;
     private String statusName;
@@ -7,12 +10,13 @@ public class JobRoleDetailedRequest {
     private String capabilityName;
     private JobRoleDetailedParameters jobRoleDetailedParameters;
 
+    @JsonCreator
     public JobRoleDetailedRequest(
-            final int jobRoleId,
-            final String statusName,
-            final String bandName,
-            final String capabilityName,
-            final JobRoleDetailedParameters jobRoleDetailedParameters
+            @JsonProperty("jobRoleId") final int jobRoleId,
+            @JsonProperty("statusName") final String statusName,
+            @JsonProperty("bandName") final String bandName,
+            @JsonProperty("capabilityName") final String capabilityName,
+            @JsonProperty("jobRoleDetailedParameters") final JobRoleDetailedParameters jobRoleDetailedParameters
     ) {
         this.jobRoleId = jobRoleId;
         this.statusName = statusName;

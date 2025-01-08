@@ -28,4 +28,60 @@ public class JobRoleDetailedParameters {
         this.closingDate = closingDate;
         this.numberOfOpenPositions = numberOfOpenPositions;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getResponsibilities() {
+        return responsibilities;
+    }
+
+    public void setResponsibilities(String responsibilities) {
+        this.responsibilities = responsibilities;
+    }
+
+    public String getSharepointUrl() {
+        return sharepointUrl;
+    }
+
+    public void setSharepointUrl(String sharepointUrl) {
+        this.sharepointUrl = sharepointUrl;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Date getClosingDate() {
+        return closingDate;
+    }
+
+    public void setClosingDate(Date closingDate) {
+        this.closingDate = closingDate;
+    }
+
+    public int getNumberOfOpenPositions() {
+        return numberOfOpenPositions;
+    }
+
+    public void setNumberOfOpenPositions(int numberOfOpenPositions) {
+        this.numberOfOpenPositions = numberOfOpenPositions;
+    }
 }

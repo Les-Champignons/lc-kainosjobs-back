@@ -75,7 +75,7 @@ public class JobRoleDao {
                     +
                     "JOIN Band ON JobRoles.bandId = Band.bandId "
                     +
-                    "WHERE jobRoleId = (?);";
+                    "WHERE jobRoleId = ?;";
 
             PreparedStatement preparedStatement = connection.prepareStatement(
                     query
@@ -103,6 +103,7 @@ public class JobRoleDao {
                             )
                 );
                 LOGGER.info("Successfully returned job roles");
+                System.out.println(jobRoleDetailedRequest);
                 return jobRoleDetailedRequest;
             }
         }   catch (SQLException e) {

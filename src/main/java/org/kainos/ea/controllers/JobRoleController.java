@@ -4,6 +4,7 @@ import org.kainos.ea.services.JobRoleService;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,7 +42,7 @@ public class JobRoleController {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getDetailedJobRole(final int id) {
+    public Response getDetailedJobRole(@PathParam("id") final int id) {
         try {
             LOGGER.info("Detailed job role has been successfully returned");
             return Response.ok().entity(jobRoleService.getDetailedJobRole(id)).build();
