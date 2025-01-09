@@ -18,17 +18,22 @@ public class JobRoleDao {
     public List<JobRoleRequest> getAllJobRoles() {
         List<JobRoleRequest> jobRoles = new ArrayList<>();
         try (Connection connection = DatabaseConnector.getConnection()) {
-            String query = "SELECT jobRoleId, roleName, location, "
+            String query = "SELECT jobRoleId, roleName, "
                     +
-                    "closingDate, "
+                    "location, closingDate, "
                     +
-                    "capabilityName, bandName "
+                    "capabilityName, bandName FROM JobRoles "
                     +
-                    "FROM JobRoles JOIN Capability"
+                    "JOIN Capability ON "
                     +
-                    " ON JobRoles.capabilityId JOIN "
+                    "JobRoles.capabilityId = Capability.capabilityId "
                     +
-                    "Band ON JobRoles.bandId;";
+                    "JOIN Band ON JobRoles.bandId = Band.bandId "
+                    +
+                    "JOIN Status ON JobRoles.statusId = Status.statusId "
+                    +
+                    "WHERE statusName = 'open';";
+
             PreparedStatement preparedStatement = connection.prepareStatement(
                     query
             );
