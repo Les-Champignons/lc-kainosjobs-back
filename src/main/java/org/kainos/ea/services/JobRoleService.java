@@ -1,7 +1,10 @@
 package org.kainos.ea.services;
 
 import org.kainos.ea.dao.JobRoleDao;
+import org.kainos.ea.exceptions.DoesNotExistException;
 import org.kainos.ea.mappers.JobRoleMapper;
+import org.kainos.ea.models.JobRoleDetailedRequest;
+import org.kainos.ea.responses.JobRoleDetailedResponse;
 import org.kainos.ea.responses.JobRoleResponse;
 
 import java.sql.SQLException;
@@ -21,5 +24,23 @@ public class JobRoleService {
         LOGGER.info("Successfully returned job roles");
         return JobRoleMapper.mapJobRoleRequestToJobRoleResponse(
                 jobRoleDao.getAllJobRoles());
+    }
+
+    public JobRoleDetailedResponse getDetailedJobRole(
+            final int id
+    ) throws SQLException, DoesNotExistException {
+        if (jobRoleDao.getJobRoleInformationById(id) == null) {
+            throw new DoesNotExistException();
+        }
+        LOGGER.info("Successfully returned detailed job role");
+        JobRoleDetailedRequest jobRoleDetailedRequest = jobRoleDao
+                .getJobRoleInformationById(id);
+        return new JobRoleDetailedResponse(
+                    jobRoleDetailedRequest.getJobRoleId(),
+                    jobRoleDetailedRequest.getStatusName(),
+                    jobRoleDetailedRequest.getBandName(),
+                    jobRoleDetailedRequest.getCapabilityName(),
+                    jobRoleDetailedRequest.getJobRoleDetailedParameters()
+        );
     }
 }
