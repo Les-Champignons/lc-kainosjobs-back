@@ -17,7 +17,6 @@ public class JobRoleDao {
     public List<JobRoleRequest> getAllJobRoles() {
         List<JobRoleRequest> jobRoles = new ArrayList<>();
         try (Connection connection = DatabaseConnector.getConnection()) {
-            Statement statement = connection.createStatement();
             String query = "SELECT jobRoleId, roleName, "
                     +
                     "location, closingDate, "
