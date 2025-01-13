@@ -2,8 +2,6 @@ FROM amazoncorretto:21
 
 RUN mvn clean install -DskipTests=true
 
-WORKDIR /
-
 ARG EXPIRATION_TIME
 ARG DB_NAME
 ARG DB_USERNAME
@@ -16,7 +14,9 @@ ENV DB_USERNAME=${DB_USERNAME}
 ENV DB_PASSWORD=${DB_PASSWORD}
 ENV DB_HOST=${DB_HOST}
 
-COPY /target/lc-kainosjobs-back-1.0-SNAPSHOT.jar .
+WORKDIR /
+
+COPY . .
 
 EXPOSE 8080
 
