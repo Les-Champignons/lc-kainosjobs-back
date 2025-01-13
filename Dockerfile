@@ -1,7 +1,5 @@
 FROM amazoncorretto:21
 
-RUN mvn clean install -DskipTests=true
-
 ARG EXPIRATION_TIME
 ARG DB_NAME
 ARG DB_USERNAME
