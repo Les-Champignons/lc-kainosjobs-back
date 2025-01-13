@@ -28,7 +28,7 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: lc-kainosjobs-back
-          IMAGE_TAG: lc-kainosjobs-back
+          IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build --build-arg DB_PASSWORD=${DB_PASSWORD} \
                        --build-arg DB_USERNAME=${DB_USERNAME} \
