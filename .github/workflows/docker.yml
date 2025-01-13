@@ -11,6 +11,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Build project
+        run: mvn clean package
         
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
