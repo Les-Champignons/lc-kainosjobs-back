@@ -13,6 +13,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build project
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          EXPIRATION_TIME: ${{ secrets.EXPIRATION_TIME }}
         run: mvn clean package
         
       - name: Configure AWS credentials
