@@ -1,5 +1,7 @@
 FROM amazoncorretto:21
 
+RUN mvn clean install -DskipTests=true
+
 WORKDIR /
 
 ARG EXPIRATION_TIME
