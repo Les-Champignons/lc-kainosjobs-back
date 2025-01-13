@@ -11,6 +11,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: List target directory
+        run: ls -la target
         
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
