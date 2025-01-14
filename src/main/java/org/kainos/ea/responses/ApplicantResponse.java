@@ -1,4 +1,4 @@
 package org.kainos.ea.responses;
 
-public class ApplicationResponse {
+public class ApplicantResponse {
 }

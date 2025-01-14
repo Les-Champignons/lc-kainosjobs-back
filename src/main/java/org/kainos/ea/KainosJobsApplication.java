@@ -6,8 +6,11 @@ import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import io.dropwizard.Application;
 import io.federecio.dropwizard.swagger.SwaggerBundle;
 import io.jsonwebtoken.Jwts;
+import org.kainos.ea.controllers.ApplicantController;
 import org.kainos.ea.controllers.AuthController;
+import org.kainos.ea.dao.ApplicantDao;
 import org.kainos.ea.daos.AuthDao;
+import org.kainos.ea.services.ApplicantService;
 import org.kainos.ea.services.AuthService;
 import javax.crypto.SecretKey;
 import org.kainos.ea.controllers.JobRoleController;
@@ -58,5 +61,7 @@ public class KainosJobsApplication
                                 )
                         )
                 );
+
+        environment.jersey().register(new ApplicantController(new ApplicantService(new ApplicantDao())));
     }
 }
