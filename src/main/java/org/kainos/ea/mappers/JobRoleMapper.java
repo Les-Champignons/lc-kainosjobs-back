@@ -1,6 +1,6 @@
 package org.kainos.ea.mappers;
 
-import org.kainos.ea.models.JobRoleRequest;
+import org.kainos.ea.requests.JobRoleRequest;
 import org.kainos.ea.responses.JobRoleResponse;
 
 import java.util.List;

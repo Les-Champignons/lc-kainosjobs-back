@@ -13,8 +13,11 @@ public final class ApplicantMapper {
     public static List<ApplicantResponse> mapApplicantToApplicantResponse(
             final List<Applicant> applicants) {
         return applicants.stream()
-                .map(applicant -> new ApplicantResponse(applicant.getEmail(),
-                        applicant.getJobRoleName(), applicant.getEtag(),
+                .map(applicant -> new ApplicantResponse(
+                        applicant.getApplicantId(),
+                        applicant.getEmail(),
+                        applicant.getJobRoleName(),
+                        applicant.getEtag(),
                         applicant.getStatus())).collect(Collectors.toList());
     }
 }

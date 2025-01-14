@@ -1,4 +1,4 @@
-package org.kainos.ea.models;
+package org.kainos.ea.requests;
 import java.util.Date;
 
 public class JobRoleRequest {

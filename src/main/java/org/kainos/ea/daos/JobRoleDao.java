@@ -1,8 +1,8 @@
 package org.kainos.ea.daos;
-import org.kainos.ea.dao.DatabaseConnector;
 import org.kainos.ea.models.JobRoleDetailedParameters;
-import org.kainos.ea.models.JobRoleDetailedRequest;
-import org.kainos.ea.models.JobRoleRequest;
+import org.kainos.ea.requests.JobRoleDetailedRequest;
+import org.kainos.ea.requests.JobRoleRequest;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +17,7 @@ public class JobRoleDao {
 
     public List<JobRoleRequest> getAllJobRoles() {
         List<JobRoleRequest> jobRoles = new ArrayList<>();
-        try (Connection connection = org.kainos.ea.dao.DatabaseConnector.getConnection()) {
+        try (Connection connection = DatabaseConnector.getConnection()) {
             String query = "SELECT jobRoleId, roleName, "
                     +
                     "location, closingDate, "
@@ -113,6 +113,20 @@ public class JobRoleDao {
         } catch (SQLException e) {
             LOGGER.severe("SEVERE: SQL Exception: " + e.getMessage());
             return null;
+        }
+    }
+
+    public void updateNumberOfOpenPositions(final int id)
+            throws SQLException {
+        try (Connection connection = DatabaseConnector.getConnection()) {
+            String query = "UPDATE JobRoles "
+                    + "SET numberOfOpenPositions = numberOfOpenPositions - 1 "
+                    + "WHERE jobRoleId = ?;";
+
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+
+            ps.executeUpdate();
         }
     }
 }

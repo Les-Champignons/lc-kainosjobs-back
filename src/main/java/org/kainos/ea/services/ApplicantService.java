@@ -4,6 +4,7 @@ import org.kainos.ea.daos.ApplicantDao;
 import org.kainos.ea.exceptions.FailedtoCreateException;
 import org.kainos.ea.mappers.ApplicantMapper;
 import org.kainos.ea.requests.ApplicantRequest;
+import org.kainos.ea.requests.ApplicantStatusRequest;
 import org.kainos.ea.responses.ApplicantResponse;
 
 import java.sql.SQLException;
@@ -31,5 +32,11 @@ public class ApplicantService {
         throws SQLException {
         return ApplicantMapper.mapApplicantToApplicantResponse(
                 applicantDao.selectApplicants());
+    }
+
+    public void updateApplicant(
+            final int id, final ApplicantStatusRequest applicantStatusRequest)
+        throws SQLException {
+        applicantDao.updateApplicantStatus(id, applicantStatusRequest);
     }
 }

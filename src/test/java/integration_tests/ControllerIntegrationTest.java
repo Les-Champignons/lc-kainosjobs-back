@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.kainos.ea.KainosJobsApplication;
 import org.kainos.ea.KainosJobsConfiguration;
-import org.kainos.ea.models.JobRoleDetailedRequest;
-import org.kainos.ea.responses.JobRoleDetailedResponse;
 import org.kainos.ea.responses.JobRoleResponse;
 
 import javax.ws.rs.client.Client;

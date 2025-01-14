@@ -4,6 +4,7 @@ import org.kainos.ea.exceptions.DoesNotExistException;
 import org.kainos.ea.services.JobRoleService;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -56,6 +57,19 @@ public class JobRoleController {
         } catch (DoesNotExistException e) {
             LOGGER.severe("SEVERE: Job Role Not Found");
             return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(e.getMessage()).build();
+        }
+    }
+
+    @PUT
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateNumberOfOpenPositions(@PathParam("id") final int id) {
+        try {
+            jobRoleService.updateNumberOfOpenPositions(id);
+            return Response.noContent().build();
+        } catch (SQLException e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                     .entity(e.getMessage()).build();
         }
     }

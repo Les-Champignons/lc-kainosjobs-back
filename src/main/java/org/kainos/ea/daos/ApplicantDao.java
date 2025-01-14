@@ -1,8 +1,8 @@
 package org.kainos.ea.daos;
 
-import org.kainos.ea.dao.DatabaseConnector;
 import org.kainos.ea.models.Applicant;
 import org.kainos.ea.requests.ApplicantRequest;
+import org.kainos.ea.requests.ApplicantStatusRequest;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,13 +18,15 @@ public class ApplicantDao {
     private static final Logger LOGGER = Logger.getLogger(
             ApplicantDao.class.getName());
     public int createApplicant(final ApplicantRequest applicantRequest) {
-        try (Connection connection = org.kainos.ea.dao.DatabaseConnector.getConnection()) {
+        try (Connection connection = DatabaseConnector.getConnection()) {
             String query = "INSERT INTO Applicants "
                     +
                     "(email, jobRoleName, etag)"
                     +
                     " VALUES (?, ?, ?);";
-            PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = connection.prepareStatement(query,
+                    Statement.RETURN_GENERATED_KEYS);
+
             final int emailIndex = 1;
             final int jobRoleNameIndex = 2;
             final int etagIndex = 3;
@@ -51,13 +53,14 @@ public class ApplicantDao {
 
         try (Connection connection = DatabaseConnector.getConnection()) {
             String query =
-                    "SELECT email, jobRoleName, etag, status FROM Applicants";
+                    "SELECT * FROM Applicants";
             PreparedStatement ps = connection.prepareStatement(query);
 
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
                 Applicant applicant = new Applicant(
+                        resultSet.getInt("applicantId"),
                         resultSet.getString("email"),
                         resultSet.getString("jobRoleName"),
                         resultSet.getString("etag"),
@@ -73,4 +76,20 @@ public class ApplicantDao {
             return null;
         }
     }
+    public void updateApplicantStatus(
+            final int id, final ApplicantStatusRequest applicantStatusRequest)
+        throws SQLException {
+        try (Connection connection = DatabaseConnector.getConnection()) {
+            String query = "UPDATE Applicants SET status = ?"
+                    + "WHERE applicantId = ?;";
+
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, applicantStatusRequest.getStatus());
+            ps.setInt(2, id);
+
+            ps.executeUpdate();
+        }
+    }
+
+
 }
