@@ -1,4 +1,0 @@
-CREATE TABLE Status (
-    statusId INT AUTO_INCREMENT PRIMARY KEY,
-    statusName VARCHAR(25)
-)

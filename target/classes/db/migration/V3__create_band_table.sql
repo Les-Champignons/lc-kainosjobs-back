@@ -1,4 +1,0 @@
-CREATE TABLE Band (
-    bandId INT AUTO_INCREMENT PRIMARY KEY,
-    bandName VARCHAR(55)
-)
