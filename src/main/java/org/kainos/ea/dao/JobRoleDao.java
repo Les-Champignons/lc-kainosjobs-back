@@ -2,7 +2,6 @@ package org.kainos.ea.dao;
 import org.kainos.ea.models.JobRoleDetailedParameters;
 import org.kainos.ea.models.JobRoleDetailedRequest;
 import org.kainos.ea.models.JobRoleRequest;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
