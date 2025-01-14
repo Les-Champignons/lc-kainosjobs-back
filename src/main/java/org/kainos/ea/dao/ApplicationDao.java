@@ -1,4 +1,4 @@
-package org.kainos.ea.daos;
+package org.kainos.ea.dao;
 
 public class ApplicationDao {
 }
