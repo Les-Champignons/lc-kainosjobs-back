@@ -1,6 +1,6 @@
 package org.kainos.ea.services;
 
-import org.kainos.ea.dao.JobRoleDao;
+import org.kainos.ea.daos.JobRoleDao;
 import org.kainos.ea.exceptions.DoesNotExistException;
 import org.kainos.ea.mappers.JobRoleMapper;
 import org.kainos.ea.models.JobRoleDetailedRequest;

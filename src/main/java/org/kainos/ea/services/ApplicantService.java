@@ -1,9 +1,8 @@
 package org.kainos.ea.services;
 
-import org.kainos.ea.dao.ApplicantDao;
+import org.kainos.ea.daos.ApplicantDao;
 import org.kainos.ea.exceptions.FailedtoCreateException;
 import org.kainos.ea.mappers.ApplicantMapper;
-import org.kainos.ea.models.Applicant;
 import org.kainos.ea.requests.ApplicantRequest;
 import org.kainos.ea.responses.ApplicantResponse;
 

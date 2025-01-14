@@ -1,4 +1,5 @@
-package org.kainos.ea.dao;
+package org.kainos.ea.daos;
+import org.kainos.ea.dao.DatabaseConnector;
 import org.kainos.ea.models.JobRoleDetailedParameters;
 import org.kainos.ea.models.JobRoleDetailedRequest;
 import org.kainos.ea.models.JobRoleRequest;
@@ -16,7 +17,7 @@ public class JobRoleDao {
 
     public List<JobRoleRequest> getAllJobRoles() {
         List<JobRoleRequest> jobRoles = new ArrayList<>();
-        try (Connection connection = DatabaseConnector.getConnection()) {
+        try (Connection connection = org.kainos.ea.dao.DatabaseConnector.getConnection()) {
             String query = "SELECT jobRoleId, roleName, "
                     +
                     "location, closingDate, "

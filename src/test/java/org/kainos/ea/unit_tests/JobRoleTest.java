@@ -4,7 +4,7 @@ package org.kainos.ea.unit_tests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.kainos.ea.controllers.JobRoleController;
-import org.kainos.ea.dao.JobRoleDao;
+import org.kainos.ea.daos.JobRoleDao;
 import org.kainos.ea.mappers.JobRoleMapper;
 import org.kainos.ea.models.JobRoleRequest;
 import org.kainos.ea.responses.JobRoleResponse;

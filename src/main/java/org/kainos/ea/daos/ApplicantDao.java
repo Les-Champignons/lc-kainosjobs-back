@@ -1,6 +1,6 @@
-package org.kainos.ea.dao;
+package org.kainos.ea.daos;
 
-import org.checkerframework.checker.units.qual.A;
+import org.kainos.ea.dao.DatabaseConnector;
 import org.kainos.ea.models.Applicant;
 import org.kainos.ea.requests.ApplicantRequest;
 
@@ -18,7 +18,7 @@ public class ApplicantDao {
     private static final Logger LOGGER = Logger.getLogger(
             ApplicantDao.class.getName());
     public int createApplicant(final ApplicantRequest applicantRequest) {
-        try (Connection connection = DatabaseConnector.getConnection()) {
+        try (Connection connection = org.kainos.ea.dao.DatabaseConnector.getConnection()) {
             String query = "INSERT INTO Applicants "
                     +
                     "(email, jobRoleName, etag)"
