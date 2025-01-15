@@ -43,4 +43,17 @@ public class JobRoleService {
                     jobRoleDetailedRequest.getJobRoleDetailedParameters()
         );
     }
+
+
+    public void deleteJobRole(final int id) throws SQLException,
+            DoesNotExistException {
+        JobRoleDetailedRequest jobRoleToDelete =
+                jobRoleDao.getJobRoleInformationById(id);
+        if (jobRoleToDelete == null) {
+            throw new DoesNotExistException();
+        }
+        jobRoleDao.deleteJobRole(id);
+        LOGGER.info("Successfully deleted job role with ID: " + id);
+    }
+
 }
