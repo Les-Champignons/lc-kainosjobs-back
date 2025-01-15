@@ -80,7 +80,7 @@ public class ApplicantDao {
             final int id, final ApplicantStatusRequest applicantStatusRequest)
         throws SQLException {
         try (Connection connection = DatabaseConnector.getConnection()) {
-            String query = "UPDATE Applicants SET status = ?"
+            String query = "UPDATE Applicants SET status = ? "
                     + "WHERE applicantId = ?;";
 
             PreparedStatement ps = connection.prepareStatement(query);
