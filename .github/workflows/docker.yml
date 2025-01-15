@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - US063-bring-docker-backend-forward
 jobs:
   build:
     runs-on: ubuntu-latest
