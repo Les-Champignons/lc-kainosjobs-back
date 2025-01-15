@@ -4,7 +4,6 @@ import io.dropwizard.auth.AuthenticationException;
 import io.dropwizard.auth.Authenticator;
 import io.jsonwebtoken.Jwts;
 import org.kainos.ea.models.JwtToken;
-import org.kainos.ea.models.User;
 import org.kainos.ea.models.UserRole;
 
 import javax.crypto.SecretKey;
