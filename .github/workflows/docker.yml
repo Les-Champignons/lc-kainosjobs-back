@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - US062_fix-docker-file
 jobs:
   build:
     runs-on: ubuntu-latest
