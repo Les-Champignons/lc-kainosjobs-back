@@ -10,10 +10,11 @@ public class Hasher {
     protected Hasher() {
         throw new UnsupportedOperationException();
     }
-    public static String getHash(final String input) {
+    public static String getHash(final String input, final String salt) {
+        String toHash = input + salt;
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] messageDigest = md.digest(input.getBytes());
+            byte[] messageDigest = md.digest(toHash.getBytes());
             BigInteger number = new BigInteger(1, messageDigest);
 
             StringBuilder hashtext = new StringBuilder(number.toString(RADIX));
