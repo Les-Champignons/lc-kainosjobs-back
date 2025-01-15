@@ -1,4 +1,4 @@
-FROM amazoncorretto:21
+FROM maven:latest
 
 ARG EXPIRATION_TIME
 ARG DB_NAME
@@ -15,6 +15,8 @@ ENV DB_HOST=${DB_HOST}
 WORKDIR /
 
 COPY . .
+
+RUN mvn clean install -DskipTests=true
 
 EXPOSE 8080
 
