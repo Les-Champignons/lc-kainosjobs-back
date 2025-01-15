@@ -4,6 +4,7 @@ import org.kainos.ea.dao.JobRoleDao;
 import org.kainos.ea.exceptions.DoesNotExistException;
 import org.kainos.ea.mappers.JobRoleMapper;
 import org.kainos.ea.models.JobRoleDetailedRequest;
+import org.kainos.ea.models.JobRoleRequest;
 import org.kainos.ea.responses.JobRoleDetailedResponse;
 import org.kainos.ea.responses.JobRoleResponse;
 
@@ -43,4 +44,15 @@ public class JobRoleService {
                     jobRoleDetailedRequest.getJobRoleDetailedParameters()
         );
     }
+
+
+    public void deleteJobRole(final int id) throws SQLException, DoesNotExistException {
+        JobRoleDetailedRequest jobRoleToDelete = jobRoleDao.getJobRoleInformationById(id);
+        if (jobRoleToDelete == null) {
+            throw new DoesNotExistException();
+        }
+        jobRoleDao.deleteJobRole(id);
+        LOGGER.info("Successfully deleted job role with ID: " + id);
+    }
+
 }
