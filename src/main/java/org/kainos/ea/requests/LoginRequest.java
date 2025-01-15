@@ -15,7 +15,7 @@ public class LoginRequest {
             @JsonProperty("password") final String password
     ) {
         this.email = email;
-        this.password = getHash(password);
+        this.password = getHash(password, email);
     }
 
     public String getEmail() {
