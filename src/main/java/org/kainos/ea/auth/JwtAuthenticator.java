@@ -19,7 +19,6 @@ public class JwtAuthenticator implements Authenticator<String, JwtToken> {
     @Override
     public Optional<JwtToken> authenticate(final String token) throws
             AuthenticationException {
-        System.out.println("1");
         try {
             Integer roleId = Jwts.parser()
                     .verifyWith(key)
@@ -32,7 +31,6 @@ public class JwtAuthenticator implements Authenticator<String, JwtToken> {
 
             return Optional.of(jwtToken);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             return Optional.empty();
         }
     }
