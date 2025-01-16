@@ -1,7 +1,8 @@
-package org.kainos.ea.models;
+package org.kainos.ea.requests;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.kainos.ea.models.JobRoleDetailedParameters;
 
 public class JobRoleDetailedRequest {
     private int jobRoleId;

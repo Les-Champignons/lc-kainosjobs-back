@@ -8,16 +8,19 @@ import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import io.dropwizard.Application;
 import io.federecio.dropwizard.swagger.SwaggerBundle;
 import io.jsonwebtoken.Jwts;
+import org.kainos.ea.controllers.ApplicantController;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.kainos.ea.auth.JwtAuthenticator;
 import org.kainos.ea.auth.RoleAuthorisor;
 import org.kainos.ea.controllers.AuthController;
+import org.kainos.ea.daos.ApplicantDao;
 import org.kainos.ea.daos.AuthDao;
+import org.kainos.ea.services.ApplicantService;
 import org.kainos.ea.models.JwtToken;
 import org.kainos.ea.services.AuthService;
 import javax.crypto.SecretKey;
 import org.kainos.ea.controllers.JobRoleController;
-import org.kainos.ea.dao.JobRoleDao;
+import org.kainos.ea.daos.JobRoleDao;
 import org.kainos.ea.services.JobRoleService;
 
 
@@ -73,5 +76,8 @@ public class KainosJobsApplication
                                 )
                         )
                 );
+
+        environment.jersey().register(new ApplicantController(
+                new ApplicantService(new ApplicantDao())));
     }
 }

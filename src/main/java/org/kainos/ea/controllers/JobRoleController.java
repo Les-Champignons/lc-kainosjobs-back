@@ -10,8 +10,8 @@ import org.kainos.ea.models.UserRole;
 import org.kainos.ea.services.JobRoleService;
 
 import javax.annotation.security.RolesAllowed;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -89,26 +89,16 @@ public class JobRoleController {
                     .entity(e.getMessage()).build();
         }
     }
-    @DELETE
+
+    @PUT
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed({UserRole.ADMIN})
-    @ApiOperation(
-            value = "Deletes a job role",
-            authorizations = @Authorization(value = HttpHeaders.AUTHORIZATION)
-    )
-    public Response deleteJobRole(@PathParam("id") final int id) {
+    public Response updateNumberOfOpenPositions(@PathParam("id") final int id) {
         try {
-            LOGGER.info("Attempting to delete job role with ID: " + id);
-            jobRoleService.deleteJobRole(id);
+            jobRoleService.updateNumberOfOpenPositions(id);
             return Response.noContent().build();
         } catch (SQLException e) {
-            LOGGER.severe("SEVERE: Internal Server Error: " + e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                    .entity(e.getMessage()).build();
-        } catch (DoesNotExistException e) {
-            LOGGER.severe("SEVERE: Job Role Not Found");
-            return Response.status(Response.Status.BAD_REQUEST)
                     .entity(e.getMessage()).build();
         }
     }

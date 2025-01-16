@@ -1,7 +1,7 @@
-package org.kainos.ea.dao;
+package org.kainos.ea.daos;
 import org.kainos.ea.models.JobRoleDetailedParameters;
-import org.kainos.ea.models.JobRoleDetailedRequest;
-import org.kainos.ea.models.JobRoleRequest;
+import org.kainos.ea.requests.JobRoleDetailedRequest;
+import org.kainos.ea.requests.JobRoleRequest;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -116,21 +116,17 @@ public class JobRoleDao {
         }
     }
 
-    public void deleteJobRole(final int id) {
+    public void updateNumberOfOpenPositions(final int id)
+            throws SQLException {
         try (Connection connection = DatabaseConnector.getConnection()) {
-            String query = "DELETE FROM JobRoles WHERE jobRoleId = ?;";
-            PreparedStatement preparedStatement =
-                    connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
+            String query = "UPDATE JobRoles "
+                    + "SET numberOfOpenPositions = numberOfOpenPositions - 1 "
+                    + "WHERE jobRoleId = ?;";
 
-            int affectedRows = preparedStatement.executeUpdate();
-            if (affectedRows > 0) {
-                LOGGER.info("Successfully deleted job role with ID: " + id);
-            } else {
-                LOGGER.warning("No job role found with ID: " + id);
-            }
-        } catch (SQLException e) {
-            LOGGER.severe("SEVERE: SQL Exception: " + e.getMessage());
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+
+            ps.executeUpdate();
         }
     }
 }
