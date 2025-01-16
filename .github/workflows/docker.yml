@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - US064-test-branch
 jobs:
   build:
     runs-on: ubuntu-latest
