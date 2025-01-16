@@ -47,7 +47,7 @@ public class ApplicantController {
         try {
             return Response.ok().
                     entity(applicantService.selectApplicants()).build();
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                     .entity(e.getMessage()).build();
         }

@@ -29,7 +29,7 @@ public class ApplicantService {
     }
 
     public List<ApplicantResponse> selectApplicants()
-        throws SQLException {
+        throws SQLException, NullPointerException {
         return ApplicantMapper.mapApplicantToApplicantResponse(
                 applicantDao.selectApplicants());
     }
