@@ -56,7 +56,10 @@ public class ApplicantController {
     @PUT
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateApplicantStatus(final @PathParam("id") int id, final ApplicantStatusRequest applicantStatusRequest) {
+    public Response updateApplicantStatus(
+            final @PathParam("id") int id,
+            final ApplicantStatusRequest applicantStatusRequest
+    ) {
         try {
             applicantService.updateApplicant(id, applicantStatusRequest);
             return Response.noContent().build();

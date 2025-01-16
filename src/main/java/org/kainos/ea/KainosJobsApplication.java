@@ -62,6 +62,7 @@ public class KainosJobsApplication
                         )
                 );
 
-        environment.jersey().register(new ApplicantController(new ApplicantService(new ApplicantDao())));
+        environment.jersey().register(new ApplicantController(
+                new ApplicantService(new ApplicantDao())));
     }
 }
