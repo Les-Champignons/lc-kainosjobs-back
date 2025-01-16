@@ -1,4 +1,4 @@
-FROM amazoncorretto:21
+FROM maven:latest
 
 ARG EXPIRATION_TIME
 ARG DB_NAME
@@ -16,6 +16,8 @@ WORKDIR /
 
 COPY . .
 
+RUN mvn clean install -DskipTests=true
+
 EXPOSE 8080
 
-CMD ["java", "-jar", "lc-kainosjobs-back-1.0-SNAPSHOT.jar", "server"]
+CMD ["java", "-jar", "target/lc-kainosjobs-back-1.0-SNAPSHOT.jar", "server"]
